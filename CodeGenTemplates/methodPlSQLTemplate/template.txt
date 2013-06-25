@@ -1,0 +1,36 @@
+#foreach($line in $document.Lines)
+#if ($line.countColumns() == 2)public $line.getColumn(1) $line.getColumn(0) (
+#{else}
+#set ($name = $line.getColumn(0))
+#set ($mode = $line.getColumn(1))
+#set ($type = $line.getColumn(2))
+#if (!($mode == "Out"))          $util.firstToUpperCase($type) $name
+#else
+#if(!($type == "Sys_Refcursor"))
+#set ($outtype = $type)
+#set ($outname = $name)
+#end
+#end
+#end
+#end
+) throws PlSqlException {
+#if(!($outtype == ""))
+    $util.firstToUpperCase($outtype) v_Return = new $util.firstToUpperCase($outtype)();
+#end
+#set ($cont = 1)
+#foreach($line in $document.Lines)
+#if ($line.countColumns() == 2)    this.setFunctionName("$line.consomerColumn()");
+    this.setOutParameter($cont, v_Return);
+#{else}
+#set ($name = $line.consomerColumn())
+#set ($mode = $line.consomerColumn())
+#set ($type = $line.consomerColumn())
+#set ($cont = $cont + 1)
+    this.set${mode}Parameter($cont, $name);
+#end
+#end
+    this.execute();
+#if(!($outtype == ""))
+    return v_Return;
+#end
+}

@@ -1,0 +1,40 @@
+class VarificaValor extends CompositeFilter {
+
+    public VarificaValor(){
+      super();
+      //setMandatory("");
+    }
+
+    public String getValor() {
+        return this.get("valor");
+    }
+    
+    public void setValor(String valor) {
+        this.add("valor", valor);
+    }
+
+    public String getIdModeloDocFiscal() {
+        return this.get("idModeloDocFiscal");
+    }
+    
+    public void setIdModeloDocFiscal(String idModeloDocFiscal) {
+        this.add("idModeloDocFiscal", idModeloDocFiscal);
+    }
+
+    public String getIdDocFiscal() {
+        return this.get("idDocFiscal");
+    }
+    
+    public void setIdDocFiscal(String idDocFiscal) {
+        this.add("idDocFiscal", idDocFiscal);
+    }
+
+    public String getMaterialServProd() {
+        return this.get("materialServProd");
+    }
+    
+    public void setMaterialServProd(String materialServProd) {
+        this.add("materialServProd", materialServProd);
+    }
+
+}

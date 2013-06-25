@@ -1,0 +1,9 @@
+Prc_Localiza_Titulos Double
+pi_Id_Sacado_Cedente   In Number
+pi_Id_Unidade_Negocio  In Number
+pi_Id_Tip_Documento    In Number
+pi_Cd_Tit              In Varchar2
+pi_Id_Status_Documento In Number
+pi_Data_Inicial        In Date
+pi_Data_Final          In Date
+po_Retorno             Out Number

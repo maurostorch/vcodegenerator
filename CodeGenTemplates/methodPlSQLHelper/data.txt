@@ -1,0 +1,5 @@
+PkgMuaFinanceiro fncStatusDocumentos Moeda
+String String String String String
+String codIndexador cd_idxfin
+String descricao Descricao
+Integer idIndexador Id_Indexador

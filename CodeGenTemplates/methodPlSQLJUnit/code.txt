@@ -1,0 +1,15 @@
+public testFncStatusDocumentos() throws SQLException, PlSqlException {
+  PkgMuaFinanceiro pkg = new PkgMuaFinanceiro();
+  Double result = pkg.fncStatusDocumentos( SysRefCursor cursor );
+
+  assertNotNull("fncStatusDocumentos() retornou nulo", result);
+  assertFalse("fncStatusDocumentos e vazio", cursor .getCursor().isEmpty());
+
+  for(Row row: cursor .getCursor()){
+    assertNotNull("fncStatusDocumentos : Cd_profin e nulo",row.getString("Cd_profin"));
+    assertNotNull("fncStatusDocumentos : Financeiro e nulo",row.getString("Financeiro"));
+    assertNotNull("fncStatusDocumentos : Id_produto_financeiro e nulo",row.getString("Id_produto_financeiro"));
+    assertNotNull("fncStatusDocumentos : Id_tip_produto_financeiro e nulo",row.getString("Id_tip_produto_financeiro"));
+    assertNotNull("fncStatusDocumentos : Nome e nulo",row.getString("Nome"));
+  }
+}

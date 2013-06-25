@@ -1,0 +1,23 @@
+public List<BasicBean> buscaStatusDocumentos() throws BusinessException {
+List<BasicBean> list = new ArrayList<BasicBean>();
+SysRefCursor data = new SysRefCursor();
+try{
+  new PkgMuaFinanceiro().fncStatusDocumentos(data);
+} catch (PlSqlException e) {
+	logger.warning("PlSqlException: " + e.getMessage());
+	throw new BusinessException(e.getMessage());
+} catch (SQLException e) {
+	logger.warning("SQLException: " + e.getMessage());
+	throw new BusinessException(e.getMessage());
+}
+
+List<Row> rows = data.getCursor();
+
+for (Row row : rows) {
+	BasicBean bean = new BasicBean();
+        bean.setCodigo(row.getString("id_status_documento"));
+        bean.setBean(row.getString("descricao"));
+        list.add(bean);
+}
+return list;
+}

@@ -1,0 +1,10 @@
+#foreach($line in $document.Lines)
+private $line.getColumn(0) $line.getColumn(1);
+
+public $line.getColumn(0) get$util.firstToUpperCase($line.getColumn(1))(){
+  return $line.getColumn(1);
+}
+public void set$util.firstToUpperCase($line.getColumn(1))($line.getColumn(0) $line.getColumn(1)){
+  this.$line.getColumn(1) = $line.getColumn(1);
+}
+#end

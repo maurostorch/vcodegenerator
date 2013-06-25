@@ -1,0 +1,7 @@
+PkgMuaFinanceiro fncStatusDocumentos Double
+SysRefCursor
+String Cd_profin
+String Financeiro
+String Id_produto_financeiro
+String Id_tip_produto_financeiro
+String Nome

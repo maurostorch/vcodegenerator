@@ -1,0 +1,22 @@
+#foreach($line in $document.Lines)
+#if ($line.countColumns() == 1)public class $line.getColumn(0) extends CompositeFilter {
+
+    public $line.getColumn(0)(){
+      super();
+      //setMandatory("");
+    }
+
+#{else}
+#set ($type = $line.consomerColumn())
+#set ($name = $line.consomerColumn())
+    public $type get$util.firstToUpperCase($name)() {
+        return this.get("$name");
+    }
+    
+    public void set$util.firstToUpperCase($name)($type $name) {
+        this.add("$name", $name);
+    }
+
+#end
+#end
+}

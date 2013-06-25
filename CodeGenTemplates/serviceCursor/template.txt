@@ -1,0 +1,33 @@
+#set ($linha = 0)
+#foreach($line in $document.Lines)
+#set ($linha = $linha + 1)
+#if ($linha == 1)
+#set ($beantype = $line.getColumn(2))
+public $line.getColumn(1)<$line.getColumn(2)> $line.getColumn(0)() throws BusinessException {
+  $line.getColumn(1)<$line.getColumn(2)> list = new ArrayList<$line.getColumn(2)>();
+#end
+#if ($linha == 2)
+  $line.getColumn(2) data = new $line.getColumn(2)();
+  try{
+    new $line.getColumn(0)().$line.getColumn(1)(data);
+  } catch (PlSqlException e) {
+    logger.warning("PlSqlException: " + e.getMessage());
+    throw new BusinessException(e.getMessage());
+  } catch (SQLException e) {
+    logger.warning("SQLException: " + e.getMessage());
+    throw new BusinessException(e.getMessage());
+  }
+
+  List<Row> rows = data.getCursor();
+
+  for (Row row : rows) {
+    $beantype bean = new $beantype();
+#end
+#if($linha > 2)
+    bean.set$line.getColumn(0)(row.get$line.getColumn(1)("$line.getColumn(2)"));
+#end
+#end
+    list.add(bean);
+  }
+  return list;
+}

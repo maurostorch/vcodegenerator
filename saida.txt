@@ -1,0 +1,22 @@
+public Double Prc_Localiza_Titulos (
+          Number pi_Id_Sacado_Cedente
+          Number pi_Id_Unidade_Negocio
+          Number pi_Id_Tip_Documento
+          Varchar2 pi_Cd_Tit
+          Number pi_Id_Status_Documento
+          Date pi_Data_Inicial
+          Date pi_Data_Final
+){
+Number po_Retorno = new Number();
+this.setProcedureName("Prc_Localiza_Titulos");
+this.setInParameter(1, pi_Id_Sacado_Cedente);
+this.setInParameter(2, pi_Id_Unidade_Negocio);
+this.setInParameter(3, pi_Id_Tip_Documento);
+this.setInParameter(4, pi_Cd_Tit);
+this.setInParameter(5, pi_Id_Status_Documento);
+this.setInParameter(6, pi_Data_Inicial);
+this.setInParameter(7, pi_Data_Final);
+this.setOutParameter(8, po_Retorno);
+this.execute();
+return po_Retorno;
+}

@@ -1,0 +1,42 @@
+#set ($linha = 0)
+#foreach($line in $document.Lines)
+#set ($linha = $linha + 1)
+#if ($linha == 1)
+#set ($packname = $line.getColumn(0))
+#set ($funcname = $line.getColumn(1))
+#set ($bean = $line.getColumn(2))
+public List<$bean> $line.getColumn(1)(
+#end
+#if ($linha == 2)
+#set($parm = 0)#foreach($col in $line.Columns)#set($parm = $parm+1)#if($parm>1),#end $col parm$parm #end) throws SQLException, PlSqlException {
+
+  List<$bean> list = new ArrayList<$bean>();
+  SysRefCursor cursor;
+  
+  logger.finest("$packname Helper.$funcname(...) Entrada");
+  try{
+    $packname pkg = new $packname();
+    cursor = pkg.funcname(#set($parm = 0)#foreach($col in $line.Columns)#set($parm = $parm+1)#if($parm>1),#end parm$parm #end);
+    for(Row row: $cursor .getCursor()){
+      $bean bean = new $bean();
+
+#end
+#if($linha > 2)
+      bean.set$util.firstToUpperCase($line.getColumn(1))(row.get$line.getColumn(0)("$line.getColumn(2)"));
+#end
+#end
+
+      list.add(bean);
+    }
+  } catch (SQLException e) {
+    logger.severe("PkgMuaFinanceiro Helper.fncStatusDocumentos(...)" + e.getMessage());
+    throw e;
+  } catch (PlSqlException e) {
+    logger.warning("PkgMuaFinanceiro Helper.fncStatusDocumentos(...)" + e.getMessage());
+    throw e;
+  }
+  
+  logger.finest("PkgMuaFinanceiro Helper.fncStatusDocumentos(...) SaÃ­da");
+
+  return list;
+}

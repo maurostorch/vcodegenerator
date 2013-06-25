@@ -1,0 +1,4 @@
+buscaStatusDocumentos List BasicBean
+PkgMuaFinanceiro fncStatusDocumentos SysRefCursor
+Codigo String id_status_documento
+Bean String descricao

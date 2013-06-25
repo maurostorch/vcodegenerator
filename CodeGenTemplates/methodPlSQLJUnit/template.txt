@@ -1,0 +1,23 @@
+#set ($linha = 0)
+#foreach($line in $document.Lines)
+#set ($linha = $linha + 1)
+#if ($linha == 1)
+#set ($funcname = $line.getColumn(1))
+public test$util.firstToUpperCase($line.getColumn(1))() throws SQLException, PlSqlException {
+  $line.getColumn(0) pkg = new $line.getColumn(0)();
+#if($line.getColumn(2) == "SysRefCursor") #set($cursor = "result") #else #set($cursor = "cursor")#end
+  $line.getColumn(2) result = pkg.$line.getColumn(1)(#end
+#if ($linha == 2)
+#set($parm = 0)#foreach($col in $line.Columns)#set($parm = $parm+1)#if($parm>1),#end $col #if($cursor == "cursor")cursor#else parm$parm#end #end);
+
+  assertNotNull("$funcname() retornou nulo", result);
+  assertFalse("$funcname e vazio", $cursor .getCursor().isEmpty());
+
+  for(Row row: $cursor .getCursor()){
+#end
+#if($linha > 2)
+    assertNotNull("$funcname : $line.getColumn(1) e nulo",row.get$line.getColumn(0)("$line.getColumn(1)"));
+#end
+#end
+  }
+}

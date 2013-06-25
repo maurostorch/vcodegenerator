@@ -1,0 +1,31 @@
+public List<Moeda> fncStatusDocumentos(
+ String parm1 , String parm2 , String parm3 , String parm4 , String parm5 ) throws SQLException, PlSqlException {
+
+  List<Moeda> list = new ArrayList<Moeda>();
+  SysRefCursor cursor;
+  
+  logger.finest("PkgMuaFinanceiro Helper.fncStatusDocumentos(...) Entrada");
+  try{
+    PkgMuaFinanceiro pkg = new PkgMuaFinanceiro();
+    cursor = pkg.funcname( parm1 , parm2 , parm3 , parm4 , parm5 );
+    for(Row row: $cursor .getCursor()){
+      Moeda bean = new Moeda();
+
+      bean.setCodIndexador(row.getString("cd_idxfin"));
+      bean.setDescricao(row.getString("Descricao"));
+      bean.setIdIndexador(row.getInteger("Id_Indexador"));
+
+      list.add(bean);
+    }
+  } catch (SQLException e) {
+    logger.severe("PkgMuaFinanceiro Helper.fncStatusDocumentos(...)" + e.getMessage());
+    throw e;
+  } catch (PlSqlException e) {
+    logger.warning("PkgMuaFinanceiro Helper.fncStatusDocumentos(...)" + e.getMessage());
+    throw e;
+  }
+  
+  logger.finest("PkgMuaFinanceiro Helper.fncStatusDocumentos(...) SaÃÂ­da");
+
+  return list;
+}

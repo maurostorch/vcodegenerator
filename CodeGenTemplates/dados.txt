@@ -1,0 +1,4 @@
+GeneratedCompositeFilter
+String codigo
+String nome
+Integer ano
